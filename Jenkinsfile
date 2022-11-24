@@ -60,6 +60,6 @@ def deploy(String environment){
 }
 
 def test(String environment){
-    echo "Testing on ${environment} environment started..." . // I Guess not needed
+    echo "Testing on ${environment} environment started..." // I Guess not needed
 
 }
