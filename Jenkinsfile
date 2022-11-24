@@ -7,7 +7,7 @@ pipeline {
         stage('build-staging') {
             steps {
                 script{
-                    build("STAGE")
+                    start("Build", "STAGE")
                 }
             }
             post {
@@ -26,7 +26,7 @@ pipeline {
         stage('deploy-staging') {
             steps {
                 script{
-                    deploy("STAGE")
+                    start("Deployment", "STAGE")
                 }
             }
             post {
@@ -64,7 +64,7 @@ pipeline {
         stage('build-production') {
             steps {
                 script{
-                    build("PROD")
+                    start("Build", "PROD")
                 }
             }
             post {
@@ -83,7 +83,7 @@ pipeline {
         stage('deploy-production') {
             steps {
                 script{
-                    deploy("PROD")
+                    start("Deployment", "PROD")
                 }
             }
             post {
@@ -121,12 +121,8 @@ pipeline {
     }
 }
 
-def build(String environment){
-    echo "Build on ${environment} environment started..."
-}
-
-def deploy(String environment){
-    echo "Deployment on ${environment} environment started..."
+def start(String stage, String environment){
+    echo "${stage} on ${environment} environment started..."
 }
 
 def test(String environment){
