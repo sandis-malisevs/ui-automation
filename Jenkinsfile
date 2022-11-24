@@ -11,7 +11,7 @@ pipeline {
                 }
             }
             post {
-                sucess {
+                success {
                     script{
                         notification("staging", "build", "0")
                     }
@@ -30,7 +30,7 @@ pipeline {
                 }
             }
             post {
-                sucess {
+                success {
                     script{
                         notification("staging", "deployment", "0")
                     }
@@ -49,7 +49,7 @@ pipeline {
                 }
             }
             post {
-                sucess {
+                success {
                     script{
                         notification("staging", "test", "0")
                     }
@@ -68,7 +68,7 @@ pipeline {
                 }
             }
             post {
-                sucess {
+                success {
                     script{
                         notification("prod", "build", "0")
                     }
@@ -87,7 +87,7 @@ pipeline {
                 }
             }
             post {
-                sucess {
+                success {
                     script{
                         notification("prod", "deployment", "0")
                     }
@@ -106,7 +106,7 @@ pipeline {
                 }
             }
             post {
-                sucess {
+                success {
                     script{
                         notification("prod", "test", "0")
                     }
