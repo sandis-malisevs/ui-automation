@@ -49,11 +49,6 @@ pipeline {
                 }
             }
             post {
-                always {
-                    script {
-                        sh "docker compose down"
-                    }
-                }
                 success {
                     script{
                         notification("staging", "test", "0")
@@ -111,11 +106,6 @@ pipeline {
                 }
             }
             post {
-                always {
-                    script {
-                        sh "docker compose down"
-                    }
-                }
                 success {
                     script{
                         notification("prod", "test", "0")
@@ -138,6 +128,7 @@ def start(String stage, String environment){
 def test(String environment){
     echo "Testing on ${environment} environment..."
     sh "docker compose up"
+    sh "docker compose down"
 }
 
 def notification(String environment, String stage, String result) {
