@@ -126,7 +126,8 @@ def start(String stage, String environment){
 }
 
 def test(String environment){
-    echo "Testing on ${environment} environment started..."
+    echo "Testing on ${environment} environment..."
+    sh "docker compose up"
 }
 
 def notification(String environment, String stage, String result) {
