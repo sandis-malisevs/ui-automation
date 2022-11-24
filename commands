@@ -2,10 +2,10 @@
 docker network create test-automation-setup
 
 # Build docker image
-docker build --no-cache -t sandismalisevs/mvn_tests:3.8.1-openjdk-11 .
+docker build --no-cache -t sandismalisevs/mvn_tests:latest .
 
 # Run container
-docker run -it --rm --network=test-automation-setup sandismalisevs/mvn_tests:3.8.1-openjdk-11 mvn clean test -Dbrowser=chrome
+docker run -it --rm --network=test-automation-setup sandismalisevs/mvn_tests:latest mvn clean test -Dbrowser=chrome
 
 # Run container - accessing selenium grid (after doing `docker compose up`)
-docker run -it --rm --network=test-automation-setup sandismalisevs/mvn_tests:3.8.1-openjdk-11 mvn clean test -Dbrowser=chrome -DgridURL=selenium-hub:4444
+docker run -it --rm --network=test-automation-setup sandismalisevs/mvn_tests:latest mvn clean test -Dbrowser=chrome -DgridURL=selenium-hub:4444
