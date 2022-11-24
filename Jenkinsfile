@@ -49,6 +49,11 @@ pipeline {
                 }
             }
             post {
+                always {
+                    script {
+                        sh "docker compose down"
+                    }
+                }
                 success {
                     script{
                         notification("staging", "test", "0")
@@ -106,6 +111,11 @@ pipeline {
                 }
             }
             post {
+                always {
+                    script {
+                        sh "docker compose down"
+                    }
+                }
                 success {
                     script{
                         notification("prod", "test", "0")
