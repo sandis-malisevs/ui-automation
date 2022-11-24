@@ -10,11 +10,35 @@ pipeline {
                     build("STAGE")
                 }
             }
+            post {
+                sucess {
+                    script{
+                        notification("staging", "build", "0")
+                    }
+                }
+                failure {
+                    script{
+                        notification("staging", "build", "1")
+                    }
+                }
+            }
         }
         stage('deploy-staging') {
             steps {
                 script{
                     deploy("STAGE")
+                }
+            }
+            post {
+                sucess {
+                    script{
+                        notification("staging", "deployment", "0")
+                    }
+                }
+                failure {
+                    script{
+                        notification("staging", "deployment", "1")
+                    }
                 }
             }
         }
@@ -24,11 +48,35 @@ pipeline {
                     test("STAGE")
                 }
             }
+            post {
+                sucess {
+                    script{
+                        notification("staging", "test", "0")
+                    }
+                }
+                failure {
+                    script{
+                        notification("staging", "test", "1")
+                    }
+                }
+            }
         }
         stage('build-production') {
             steps {
                 script{
                     build("PROD")
+                }
+            }
+            post {
+                sucess {
+                    script{
+                        notification("prod", "build", "0")
+                    }
+                }
+                failure {
+                    script{
+                        notification("prod", "build", "1")
+                    }
                 }
             }
         }
@@ -38,11 +86,35 @@ pipeline {
                     deploy("PROD")
                 }
             }
+            post {
+                sucess {
+                    script{
+                        notification("prod", "deployment", "0")
+                    }
+                }
+                failure {
+                    script{
+                        notification("prod", "deployment", "1")
+                    }
+                }
+            }
         }
         stage('test-production') {
             steps {
                 script{
                     test("PROD")
+                }
+            }
+            post {
+                sucess {
+                    script{
+                        notification("prod", "test", "0")
+                    }
+                }
+                failure {
+                    script{
+                        notification("prod", "test", "1")
+                    }
                 }
             }
         }
@@ -51,15 +123,16 @@ pipeline {
 
 def build(String environment){
     echo "Build on ${environment} environment started..."
-
 }
 
 def deploy(String environment){
     echo "Deployment on ${environment} environment started..."
-
 }
 
 def test(String environment){
     echo "Testing on ${environment} environment started..." // I Guess not needed
+}
 
+def notification(String environment, String stage, String result) {
+    bash 'send_notification.sh “${environment} ${stage}” ${result}'
 }
