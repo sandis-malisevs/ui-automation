@@ -134,5 +134,5 @@ def test(String environment){
 }
 
 def notification(String environment, String stage, String result) {
-    sh 'send_notification.sh “${environment} ${stage}” ${result}'
+    sh 'send_notification.sh ${environment} ${stage} ${result}'
 }
