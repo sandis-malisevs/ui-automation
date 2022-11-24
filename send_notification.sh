@@ -14,7 +14,7 @@ fi
 
 # Send notification
 curl -X POST \
-  https://discordapp.com/api/webhooks/651765119101042689/JhoCn787dYW2s8c9CkqdYYizHTgUx9VT5pX65iCMfwYnC63C3Lc3tDGJsq0pnem3CD7B \
+  https://discord.com/api/webhooks/1045437333350129754/1jJsbYwUo91uLJxz1qHbKvcuI1CvCOKeku9AYME-fY62XBzP7AMD7QKmz2ud9Y7ZqVFq \
   -H 'Cache-Control: no-cache' \
   -H 'Content-Type: application/json' \
   -d '{
