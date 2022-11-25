@@ -8,6 +8,7 @@ pipeline {
             steps {
                 script{
                     start("Build", "STAGE")
+                    sh "docker build --no-cache -t sandismalisevs/mvn_tests:latest ."
                 }
             }
             post {
@@ -65,6 +66,7 @@ pipeline {
             steps {
                 script{
                     start("Build", "PROD")
+                    sh "docker build --no-cache -t sandismalisevs/mvn_tests:latest ."
                 }
             }
             post {
@@ -128,7 +130,7 @@ def start(String stage, String environment){
 def test(String environment){
     echo "Testing on ${environment} environment..."
     sh "docker compose up"
-    sh "docker compose down"
+    
 }
 
 def notification(String environment, String stage, String result) {
