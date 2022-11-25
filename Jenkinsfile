@@ -129,7 +129,7 @@ def start(String stage, String environment){
 
 def test(String environment){
     echo "Testing on ${environment} environment..."
-    sh "docker compose up"
+    sh "docker compose up --abort-on-container-exit --exit-code-from mvn-tests"
     
 }
 
